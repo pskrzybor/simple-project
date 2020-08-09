@@ -1,0 +1,33 @@
+package pl.sdacademy.simple.util;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import pl.sdacademy.simple.data.CarEntity;
+
+class DatabaseUtilIT {
+
+	private EntityManager entityManager;
+
+	@BeforeEach
+	void setup() {
+		entityManager = DatabaseUtil.getEntityManager();
+	}
+
+	@Test
+	void shouldFindCars() {
+
+		Query query = entityManager.createQuery("select car from CarEntity car", CarEntity.class);
+
+		List<CarEntity> result = query.getResultList();
+
+		assertThat(result).hasSize(8);
+		assertThat(result.get(0).getAttributes()).hasSize(2);
+	}
+}
