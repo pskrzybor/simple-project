@@ -11,5 +11,10 @@
 
 	<artifactId>backend</artifactId>
 
+	<dependencies>
+
+
+	</dependencies>
+
 
 </project>
